@@ -1,0 +1,2829 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "OpenAPI definition",
+    "version" : "v0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8082/content-back/v1",
+    "description" : "Generated server url"
+  } ],
+  "paths" : {
+    "/template-contracts/pending-approval/change-status" : {
+      "options" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "updateTemplateContractPendingApproval",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "application/json" ]
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/ContractTemplateRedis"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group-contract/pending-approval/change-status" : {
+      "options" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "updateGroupContractPendingApproval",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/ContGroupDocRedisDTO"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/form-notification" : {
+      "options" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "search_2",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "notiType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "transactionType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "updateContTemplateNotification",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ContTemplateNotificationDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "createFormNotification",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ContTemplateNotificationDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/template-contracts/pending-approval" : {
+      "get" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "searchTemplateContractWaitingForApproval",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "createTemplateContractPendingApproval",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "application/json" ]
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ContractTemplateRedis"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/template-contracts/pending-approval/remove" : {
+      "post" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "deleteTemplateContract",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "application/json" ]
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/template-contracts/approval" : {
+      "get" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "search",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "createTemplateContractApproval",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "application/json" ]
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/ContTemplateDocDTO"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/portfolio/{code}" : {
+      "post" : {
+        "tags" : [ "contract-portfolio-controller" ],
+        "operationId" : "uploadContract",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "productContract",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "files" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "string",
+                      "format" : "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/portfolio/approval" : {
+      "post" : {
+        "tags" : [ "contract-portfolio-controller" ],
+        "operationId" : "approveContract",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PortfolioApprovalDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/internal/snapshot" : {
+      "post" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "generateContract",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/GenerateContDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/pending-approval" : {
+      "get" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "searchGroupContractWaitingForApproval",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "createGroupContractPendingApproval",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ContGroupDocRedisDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/pending-approval/remove" : {
+      "post" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "deleteGroupContract",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/approval" : {
+      "get" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "search_1",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "createGroupContractApproval",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/ContGroupDocDTO"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/file/eSign/{arrangementId}/{customerAccount}" : {
+      "post" : {
+        "tags" : [ "e-sign-fpt-controller" ],
+        "operationId" : "prepareFilesForSignCloud",
+        "parameters" : [ {
+          "name" : "arrangementId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "customerAccount",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/contract-param" : {
+      "get" : {
+        "tags" : [ "contract-param-controller" ],
+        "operationId" : "search_3",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "contract-param-controller" ],
+        "operationId" : "updateContractParam",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ContParamDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/broker/snapshot" : {
+      "post" : {
+        "tags" : [ "broker-contract-controller" ],
+        "operationId" : "saveContractBroker",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/GenerateContDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/snapshot/sign" : {
+      "patch" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "addContractFooter",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SnapshotsUpdateDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/enable/{id}" : {
+      "patch" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "enable",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/disable/{id}" : {
+      "patch" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "disable",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/form-notification/enable/{code}" : {
+      "patch" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "enable_1",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/form-notification/disable/{code}" : {
+      "patch" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "disable_1",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/tnc" : {
+      "get" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "getTermAndConditions",
+        "parameters" : [ {
+          "name" : "action",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/template-contracts" : {
+      "get" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/template-contracts/version" : {
+      "get" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "findByTemplateVersionByIds",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int64"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ContTemplateDocVersionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/template-contracts/details" : {
+      "get" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "findByCodes",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ContTemplateDocDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/template-contracts/content" : {
+      "get" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "findContentByTemplateIdAndActiveVersion",
+        "parameters" : [ {
+          "name" : "ti",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "av",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/template-contracts/by/id" : {
+      "get" : {
+        "tags" : [ "cont-template-controller" ],
+        "operationId" : "findByTemplateId",
+        "parameters" : [ {
+          "name" : "ids",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int64"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/snapshots/{code}" : {
+      "get" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "snapshotListContract",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ContTemplateDocDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/snapshot/{code}" : {
+      "get" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "snapshotContractDownload",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "tempCode",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/snapshot/{code}/group" : {
+      "get" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "snapshotContractDownloadByLang",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/portfolio/{code}/{filename}" : {
+      "get" : {
+        "tags" : [ "contract-portfolio-controller" ],
+        "operationId" : "downloadContract",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "filename",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/internal/snapshots/{arrangementId}" : {
+      "get" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "internalListContract",
+        "parameters" : [ {
+          "name" : "arrangementId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ContTemplateDocDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/internal/snapshot/{id}" : {
+      "get" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "internalSnapshotContractDownload",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/internal/snapshot/{id}/group" : {
+      "get" : {
+        "tags" : [ "contract-arrangement-controller" ],
+        "operationId" : "internalSnapshotContractDownloadByLang",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/{groupDocName}" : {
+      "get" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "findTemplateByGroupDocName",
+        "parameters" : [ {
+          "name" : "groupDocName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ContGroupDocDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/search" : {
+      "get" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "findByName",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/search/all" : {
+      "get" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "findAll_1",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/group-contract/code/{groupDocCode}" : {
+      "get" : {
+        "tags" : [ "cont-group-doc-controller" ],
+        "operationId" : "findTemplateByGroupDocCode",
+        "parameters" : [ {
+          "name" : "groupDocCode",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ContGroupDocDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/form-notification/noti-type" : {
+      "get" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "getNameByNotiTypeAndTransType",
+        "parameters" : [ {
+          "name" : "notiType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "transactionType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/form-notification/noti-type-name" : {
+      "get" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "getByNotiTypeAndTransTypeAndName",
+        "parameters" : [ {
+          "name" : "notiType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "transactionType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/form-notification/content" : {
+      "get" : {
+        "tags" : [ "cont-template-notification-controller" ],
+        "operationId" : "getContentByCode",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/contract-param/all" : {
+      "get" : {
+        "tags" : [ "contract-param-controller" ],
+        "operationId" : "findAllParams",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ContParamDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/cache" : {
+      "get" : {
+        "tags" : [ "cache-controller" ],
+        "operationId" : "listAll",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/portfolio/folder/{code}" : {
+      "delete" : {
+        "tags" : [ "contract-portfolio-controller" ],
+        "operationId" : "deleteDraftFolder",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/portfolio/files/{code}" : {
+      "delete" : {
+        "tags" : [ "contract-portfolio-controller" ],
+        "operationId" : "deleteDraftFiles",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PortfolioDeleteFilesDTO"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/cache/remote" : {
+      "delete" : {
+        "tags" : [ "cache-controller" ],
+        "operationId" : "deleteCacheRemotely",
+        "parameters" : [ {
+          "name" : "ep",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "value",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/cache/redis" : {
+      "delete" : {
+        "tags" : [ "cache-controller" ],
+        "operationId" : "deleteByRedisCacheManagerPrefix",
+        "parameters" : [ {
+          "name" : "c",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      },
+      "options" : {
+        "summary" : "CORS support",
+        "description" : "This endpoint allows CORS preflight requests",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ContractTemplateRedis" : {
+        "type" : "object",
+        "properties" : {
+          "index" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "createdDate" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "updateDate" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "makerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "checkerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "activeVersion" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          },
+          "maker" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "signatureStatus" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "signaturePage" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "keepRaw" : {
+            "type" : "boolean"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "PageRequestDTO" : {
+        "type" : "object",
+        "properties" : {
+          "pageNum" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "pageSize" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "totalRecords" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "totalPages" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "sortable" : {
+            "type" : "boolean"
+          },
+          "sortAttribute" : {
+            "type" : "string"
+          },
+          "validPageNum" : {
+            "type" : "boolean"
+          },
+          "validPageSize" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ResponseMessage" : {
+        "type" : "object",
+        "properties" : {
+          "timestamp" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "error" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "object"
+          },
+          "paging" : {
+            "$ref" : "#/components/schemas/PageRequestDTO"
+          },
+          "message" : {
+            "type" : "object"
+          },
+          "path" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ContGroupDocRedisDTO" : {
+        "required" : [ "appliedDate", "code", "name", "templateId" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "createDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updateDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "makerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "checkerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "activeVersion" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "templateId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int64"
+            }
+          },
+          "appliedDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "codeTemplateContract" : {
+            "type" : "string"
+          },
+          "lstCodeTemplate" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "index" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "ContTemplateNotificationDTO" : {
+        "required" : [ "name", "notiType" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "notiType" : {
+            "type" : "string"
+          },
+          "transType" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          },
+          "createDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updateDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "ContTemplateDocDTO" : {
+        "required" : [ "code" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "createdDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updatedDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "maker" : {
+            "type" : "string"
+          },
+          "activeVersion" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "content" : {
+            "type" : "string"
+          },
+          "appliedDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "index" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "signatureStatus" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "signaturePage" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "PortfolioApprovalDTO" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "draftId" : {
+            "type" : "string"
+          },
+          "draftCode" : {
+            "type" : "string"
+          }
+        }
+      },
+      "GenerateContDTO" : {
+        "type" : "object",
+        "properties" : {
+          "groupDocName" : {
+            "type" : "string"
+          },
+          "snapshotObjectCode" : {
+            "type" : "string"
+          },
+          "snapshotObjectId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "flattenedMap" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object"
+            }
+          },
+          "extraJSONTableModels" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ContGroupDocDTO" : {
+        "required" : [ "code", "templateId" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "createDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updateDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "appliedDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "maker" : {
+            "type" : "string"
+          },
+          "activeVersion" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "contTemplateDocDto" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ContTemplateDocDTO"
+            }
+          },
+          "contTemplateDocVersions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ContTemplateDocVersionDTO"
+            }
+          },
+          "templateId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int64"
+            }
+          },
+          "versionIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int64"
+            }
+          },
+          "contGroupDocHistories" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ContGroupDocHistoryDTO"
+            }
+          },
+          "lstCodeTemplate" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "index" : {
+            "type" : "string"
+          },
+          "updatedDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "createdDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "ContGroupDocHistoryDTO" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "templateId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "versionId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "appliedDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "makerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "checkerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "activeVersion" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "ContTemplateDocVersionDTO" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "templateId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "templateName" : {
+            "type" : "string"
+          },
+          "templateCode" : {
+            "type" : "string"
+          },
+          "templatePath" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "makerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "checkerId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "ContParamDTO" : {
+        "required" : [ "code" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "format" : {
+            "type" : "string"
+          },
+          "paramSource" : {
+            "type" : "string"
+          },
+          "createdDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updatedDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "SnapshotsUpdateDTO" : {
+        "required" : [ "arrangementId" ],
+        "type" : "object",
+        "properties" : {
+          "content" : {
+            "type" : "string"
+          },
+          "arrangementId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "position" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PortfolioDeleteFilesDTO" : {
+        "required" : [ "draftCode", "draftId", "filenames" ],
+        "type" : "object",
+        "properties" : {
+          "draftId" : {
+            "type" : "string"
+          },
+          "draftCode" : {
+            "type" : "string"
+          },
+          "filenames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
